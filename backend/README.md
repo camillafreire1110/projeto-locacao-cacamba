@@ -1,25 +1,25 @@
 # Backend – Sistema de Locação de Caçambas
 
-Este diretório é responsável pelo back-end do sistema de locação de caçambas.
+Este diretório contém o backend do sistema de locação de caçambas.
 
-## Objetivo
-Implementar a lógica do sistema, responsável por processar os dados, regras de negócio e comunicação com o banco de dados.
+## Responsabilidades do Backend
+- Receber os dados da locação
+- Validar as informações do cliente
+- Salvar os dados no banco de dados
+- Retornar as informações cadastradas para o frontend
 
-## Funcionalidades previstas
-- Cadastro de locação de caçambas
-- Armazenamento das informações no banco de dados
-- Validação dos dados enviados pelo front-end
-- Retorno de mensagens de sucesso ou erro
-
-## Dados da locação
-- Nome do cliente
-- Endereço
+## Funcionalidade Principal
+Cadastro de locação de caçamba com os seguintes dados:
+- Nome do cliente ou Razão Social
+- CPF ou CNPJ
+- Endereço da locação
+- Região de atendimento
 - Telefone
-- Tipo de caçamba
-- Data da locação
-- Valor
+- E-mail
+- Valor da locação
+- Forma de pagamento
+- Data da solicitação
 
-## Tecnologias (previstas)
-- Linguagem de programação a definir
-- Banco de dados relacional
+## Status
+Backend em fase inicial de desenvolvimento.
 
