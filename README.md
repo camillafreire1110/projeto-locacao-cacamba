@@ -117,18 +117,6 @@ backend/
      ├── db.py
      └── test_db.py
 
-## 📁 Estrutura do Projeto
-
-```
-backend/
- └── src/
-     ├── controllers/
-     ├── models/
-     ├── routes/
-     ├── app.py
-     ├── db.py
-     └── test_db.py
-
 frontend/
  └── index.html
 ```
