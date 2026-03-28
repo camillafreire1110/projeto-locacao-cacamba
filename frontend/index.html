@@ -83,7 +83,7 @@
 
 <!-- CAÇAMBAS -->
 <div class="box">
-    <h2>Lista de Caçambas (50 unidades - 4m³)</h2>
+    <h2>Lista de Caçambas</h2>
 
     <table>
         <thead>
@@ -109,17 +109,16 @@
     <input type="email" id="email" placeholder="Email">
 
     <button style="background-color:#0a7c4a;" onclick="cadastrarCliente()">Cadastrar Cliente</button>
+
+    <!-- 🔥 MENSAGEM -->
+    <p id="mensagem" style="color: green; font-weight: bold; margin-top: 10px;"></p>
 </div>
 
 <div class="box">
     <h2>Lista de Clientes</h2>
 
     <button style="background-color:black;" onclick="buscarClientes()">Carregar Clientes</button>
-
-    <!-- 🔥 BOTÃO NOVO -->
-    <button style="background-color:#c0392b;" onclick="limparTelaClientes()">
-        Limpar Tela
-    </button>
+    <button style="background-color:#c0392b;" onclick="limparTelaClientes()">Limpar Tela</button>
 
     <table>
         <thead>
@@ -128,6 +127,7 @@
                 <th>Documento</th>
                 <th>Endereço da Obra</th>
                 <th>Telefone</th>
+                <th>Email</th>
             </tr>
         </thead>
         <tbody id="listaClientes"></tbody>
@@ -220,9 +220,17 @@ function cadastrarCliente() {
         body: JSON.stringify(data)
     })
     .then(() => {
-        alert("Cliente cadastrado com sucesso!");
+
+        // 🔥 MENSAGEM NA TELA
+        document.getElementById("mensagem").innerText = "Cliente cadastrado com sucesso!";
+
+        setTimeout(() => {
+            document.getElementById("mensagem").innerText = "";
+        }, 3000);
+
         buscarClientes();
 
+        // limpar campos
         document.getElementById("nome").value = "";
         document.getElementById("cpf_cnpj").value = "";
         document.getElementById("endereco").value = "";
@@ -245,13 +253,13 @@ function buscarClientes() {
                     <td>${c.cpf_cnpj}</td>
                     <td>${c.endereco}</td>
                     <td>${c.telefone}</td>
+                    <td>${c.email}</td>
                 </tr>
             `;
         });
     });
 }
 
-// 🔥 FUNÇÃO NOVA
 function limparTelaClientes() {
     document.getElementById("listaClientes").innerHTML = "";
 }
