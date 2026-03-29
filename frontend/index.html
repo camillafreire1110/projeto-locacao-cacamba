@@ -110,7 +110,6 @@
 
     <button style="background-color:#0a7c4a;" onclick="cadastrarCliente()">Cadastrar Cliente</button>
 
-    <!-- 🔥 MENSAGEM -->
     <p id="mensagem" style="color: green; font-weight: bold; margin-top: 10px;"></p>
 </div>
 
@@ -180,21 +179,30 @@ async function carregar() {
     document.getElementById("alugadas").innerHTML = `🔴 Alugadas: ${alugadas}`;
 }
 
+// 🔥 FUNÇÃO ATUALIZADA
 async function alterarStatus(id, statusAtual) {
 
     if (statusAtual === "disponivel") {
+
+        await fetch(API + "/cacambas/" + id, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ status: "alugada" })
+        });
+
+        carregar();
+
         document.getElementById("cadastroCliente").scrollIntoView({
             behavior: "smooth"
         });
+
         return;
     }
-
-    const novoStatus = "disponivel";
 
     await fetch(API + "/cacambas/" + id, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: novoStatus })
+        body: JSON.stringify({ status: "disponivel" })
     });
 
     carregar();
@@ -221,7 +229,6 @@ function cadastrarCliente() {
     })
     .then(() => {
 
-        // 🔥 MENSAGEM NA TELA
         document.getElementById("mensagem").innerText = "Cliente cadastrado com sucesso!";
 
         setTimeout(() => {
@@ -230,7 +237,6 @@ function cadastrarCliente() {
 
         buscarClientes();
 
-        // limpar campos
         document.getElementById("nome").value = "";
         document.getElementById("cpf_cnpj").value = "";
         document.getElementById("endereco").value = "";
