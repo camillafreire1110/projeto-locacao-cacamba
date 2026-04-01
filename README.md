@@ -1,28 +1,35 @@
 # 🚛 Sistema de Controle de Estoque de Caçambas
 
 ## 📖 Descrição
+Sistema desenvolvido em Flask + MySQL para controle de estoque de 50 caçambas numeradas (4m³), com evolução para cadastro e gerenciamento de clientes.
 
-Sistema desenvolvido em **Flask + MySQL** para controle de estoque de 50 caçambas numeradas (4m³).
-
-O sistema permite visualizar todas as unidades, alterar o status entre **disponível** e **alugada**, além de exibir um painel resumo com contagem automática.
-
-Projeto desenvolvido para a disciplina prática (AC1).
+O projeto foi inspirado em uma necessidade real da área de locação de caçambas, permitindo simular o controle operacional de estoque e atendimento.
 
 ---
 
-## 🚀 Funcionalidades (AC1)
+## 🚀 Funcionalidades
 
+### 🔹 AC1 – Controle de Caçambas
 - Controle de 50 caçambas numeradas  
 - Status: disponível / alugada  
-- Alteração de status em tempo real  
+- Alteração de status em tempo real (disponível/alugada)  
 - Painel resumo com contagem automática  
-- Estrutura organizada em MVC  
 - Integração entre Frontend, Backend e Banco de Dados  
 
 ---
 
-## 🛠 Tecnologias Utilizadas
+### 🔹 AC2 – Cadastro de Clientes
+- Cadastro de clientes (nome, CPF/CNPJ, endereço da obra, telefone e email)  
+- Listagem de clientes em tabela no frontend  
+- Integração com API REST (Flask)  
+- Atualização automática da lista após cadastro  
+- Exibição de mensagem de confirmação de cadastro  
+- Exibição dos dados apenas quando solicitado pelo usuário  
+- Direcionamento automático para o cadastro de cliente ao selecionar uma caçamba disponível  
 
+---
+
+## 🛠 Tecnologias Utilizadas
 - Python  
 - Flask  
 - MySQL  
@@ -34,17 +41,112 @@ Projeto desenvolvido para a disciplina prática (AC1).
 ---
 
 ## 📁 Estrutura do Projeto
+# 🚛 Sistema de Controle de Estoque de Caçambas
 
-```
+## 📖 Descrição
+Sistema desenvolvido em Flask + MySQL para controle de estoque de 50 caçambas numeradas (4m³), com evolução para cadastro e gerenciamento de clientes.
+
+O projeto foi inspirado em uma necessidade real da área de locação de caçambas, permitindo simular o controle operacional de estoque e atendimento.
+
+---
+
+## 🚀 Funcionalidades
+
+### 🔹 AC1 – Controle de Caçambas
+- Controle de 50 caçambas numeradas  
+- Status: disponível / alugada  
+- Alteração de status em tempo real (disponível/alugada)  
+- Painel resumo com contagem automática  
+- Integração entre Frontend, Backend e Banco de Dados  
+
+---
+
+### 🔹 AC2 – Cadastro de Clientes
+- Cadastro de clientes (nome, CPF/CNPJ, endereço da obra, telefone e email)  
+- Listagem de clientes em tabela no frontend  
+- Integração com API REST (Flask)  
+- Atualização automática da lista após cadastro  
+- Exibição de mensagem de confirmação de cadastro  
+- Exibição dos dados apenas quando solicitado pelo usuário  
+- Direcionamento automático para o cadastro de cliente ao selecionar uma caçamba disponível  
+
+---
+
+## 🛠 Tecnologias Utilizadas
+- Python  
+- Flask  
+- MySQL  
+- HTML  
+- JavaScript  
+- Git  
+- GitHub  
+
+---
+
+## 📁 Estrutura do Projeto
+# 🚛 Sistema de Controle de Estoque de Caçambas
+
+## 📖 Descrição
+Sistema desenvolvido em Flask + MySQL para controle de estoque de 50 caçambas numeradas (4m³), com evolução para cadastro e gerenciamento de clientes.
+
+O projeto foi inspirado em uma necessidade real da área de locação de caçambas, permitindo simular o controle operacional de estoque e atendimento.
+
+---
+
+## 🚀 Funcionalidades
+
+### 🔹 AC1 – Controle de Caçambas
+- Controle de 50 caçambas numeradas  
+- Status: disponível / alugada  
+- Alteração de status em tempo real (disponível/alugada)  
+- Painel resumo com contagem automática  
+- Integração entre Frontend, Backend e Banco de Dados  
+
+---
+
+### 🔹 AC2 – Cadastro de Clientes
+- Cadastro de clientes (nome, CPF/CNPJ, endereço da obra, telefone e email)  
+- Listagem de clientes em tabela no frontend  
+- Integração com API REST (Flask)  
+- Atualização automática da lista após cadastro  
+- Exibição de mensagem de confirmação de cadastro  
+- Exibição dos dados apenas quando solicitado pelo usuário  
+- Direcionamento automático para o cadastro de cliente ao selecionar uma caçamba disponível  
+
+---
+
+## 🛠 Tecnologias Utilizadas
+- Python  
+- Flask  
+- MySQL  
+- HTML  
+- JavaScript  
+- Git  
+- GitHub  
+
+---
+
+## 📁 Estrutura do Projeto
 backend/
- └── src/
-     ├── controllers/
-     ├── models/
-     ├── routes/
-     ├── app.py
-     ├── db.py
-     └── test_db.py
+└── src/
+├── controllers/
+├── models/
+├── routes/
+├── app.py
+├── db.py
+└── test_db.py
 
 frontend/
- └── index.html
-```
+└── index.html
+
+---
+
+## 🎯 Objetivo do Projeto
+Aplicar conceitos de desenvolvimento de software com separação em camadas (frontend, backend e banco de dados), utilizando metodologia incremental por funcionalidades (AC1, AC2).
+
+---
+
+## 🚀 Próximos Passos
+- Integração entre clientes e caçambas (locação)  
+- Controle de prazo de permanência (3 dias úteis)  
+- Organização de itinerário por data  
