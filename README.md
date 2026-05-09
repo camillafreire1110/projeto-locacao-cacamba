@@ -1,55 +1,72 @@
 # Sistema de Locação de Caçambas
 
-## 📖 Descrição
-Sistema desenvolvido em Flask + MySQL para controle de locação de caçambas, incluindo gerenciamento de estoque e cadastro de clientes.
+Projeto desenvolvido com o objetivo de gerenciar o processo de locação de caçambas, incluindo controle de estoque, cadastro de clientes e registro de locações.
 
-O projeto foi inspirado em uma necessidade real da área de locação de caçambas, permitindo simular o controle operacional de estoque e atendimento.
+---
+
+## 📌 Descrição
+
+O sistema simula um cenário real de uma empresa de locação de caçambas, permitindo o controle completo do fluxo operacional.
+
+---
+
+## ⚙️ Tecnologias Utilizadas
+
+- Python (Flask)
+- MySQL
+- HTML, CSS e JavaScript
+- API REST (comunicação frontend e backend)
+
+---
 
 ## 🚀 Funcionalidades
 
-### 🔹 AC1 – Controle de Caçambas
-- Controle de 50 caçambas numeradas
-- Status: disponível / alugada
-- Alteração de status das caçambas (disponível/alugada)
-- Painel resumo com contagem automática
-- Integração entre Frontend, Backend e Banco de Dados
+### 🟢 AC1 – Controle de Caçambas
+- Listagem de caçambas
+- Controle de status (disponível / alugada)
 
-### 🔹 AC2 – Cadastro de Clientes
-- Cadastro de clientes (nome, CPF/CNPJ, endereço da obra, telefone e email)
-- Listagem de clientes em tabela no frontend
-- Integração com API REST (Flask)
-- Atualização da lista de clientes após cadastro, mediante solicitação do usuário
-- Exibição de mensagem de confirmação de cadastro
-- Exibição dos dados apenas quando solicitado pelo usuário
-- Direcionamento automático para o cadastro de cliente ao selecionar uma caçamba disponível
+### 🟢 AC2 – Cadastro de Clientes
+- Cadastro completo de clientes
+- Listagem de clientes cadastrados
 
-## 🛠 Tecnologias Utilizadas
-- Python
-- Flask
-- MySQL
-- HTML
-- JavaScript
-- Git
-- GitHub
+### 🟢 AC3 – Registro de Locações
+- Associação entre cliente e caçamba
+- Registro automático de datas:
+  - Data de entrega
+  - Data de retirada
+- Armazenamento no banco de dados
 
-## 📁 Estrutura do Projeto
+---
 
-backend/
- └── src/
-     ├── controllers/
-     ├── models/
-     ├── routes/
-     ├── app.py
-     ├── db.py
-     └── test_db.py
+## 🗄️ Banco de Dados
 
-frontend/
- └── index.html
+O sistema utiliza MySQL com as tabelas:
 
-## 🎯 Objetivo do Projeto
-Aplicar conceitos de desenvolvimento de software com separação em camadas (frontend, backend e banco de dados), utilizando metodologia incremental por funcionalidades (AC1, AC2).
+- cacambas
+- clientes
+- locacoes
 
-## 🚀 Próximos Passos
-- Integração entre clientes e caçambas (locação)
-- Controle de prazo de permanência (3 dias úteis)
-- Organização de itinerário por data
+---
+
+## 🔗 Integração
+
+O sistema funciona com integração completa entre:
+
+- Frontend
+- Backend
+- Banco de dados
+
+---
+
+## 📈 Próximas Melhorias (AC4)
+
+- Controle de pagamentos
+- Regras operacionais da locação
+- Automação de processos
+
+---
+
+## 👩‍💻 Autora
+
+Camilla Freire  
+Projeto acadêmico baseado em cenário real de locação de caçambas.
