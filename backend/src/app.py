@@ -3,6 +3,7 @@ from flask_cors import CORS
 
 from routes.status_routes import status_bp
 from routes.cacamba_routes import cacamba_bp
+from routes.locacoes_routes import locacoes_bp  # ✅ ADICIONADO
 
 from db import get_connection  # conexão com banco
 
@@ -14,6 +15,7 @@ CORS(app)
 # Registra os blueprints
 app.register_blueprint(status_bp)
 app.register_blueprint(cacamba_bp)
+app.register_blueprint(locacoes_bp)  # ✅ ADICIONADO
 
 
 @app.route("/")
