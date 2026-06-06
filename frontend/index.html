@@ -77,8 +77,15 @@ tr:hover {
 }
 
 /* STATUS */
-.status-disponivel { color: #0a7c4a; font-weight: bold; }
-.status-alugada { color: #c0392b; font-weight: bold; }
+.status-disponivel {
+    color: #0a7c4a;
+    font-weight: bold;
+}
+
+.status-alugada {
+    color: #c0392b;
+    font-weight: bold;
+}
 
 /* BOTÕES */
 button {
@@ -89,8 +96,27 @@ button {
     font-weight: bold;
 }
 
-.btn-alugar { background: #c0392b; color: white; }
-.btn-liberar { background: #0a7c4a; color: white; }
+.btn-alugar {
+    background: #c0392b;
+    color: white;
+}
+
+.btn-liberar {
+    background: #0a7c4a;
+    color: white;
+}
+
+button:disabled {
+
+    background-color: #cccccc !important;
+
+    color: #666666 !important;
+
+    cursor: not-allowed;
+
+    opacity: 0.7;
+
+}
 
 /* INPUT */
 input {
@@ -108,6 +134,31 @@ input {
     padding: 10px;
     border-radius: 6px;
     margin-top: 10px;
+}
+
+.notificacao {
+
+    position: fixed;
+
+    top: 20px;
+
+    right: 20px;
+
+    background: #0a7c4a;
+
+    color: white;
+
+    padding: 15px 20px;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+    display: none;
+
+    z-index: 9999;
 }
 
 /* FOOTER */
@@ -151,6 +202,7 @@ input {
 
 <div class="tabela-cacambas">
 <table>
+
 <thead>
 <tr>
 <th>ID</th>
@@ -159,13 +211,16 @@ input {
 <th>Ação</th>
 </tr>
 </thead>
+
 <tbody id="lista"></tbody>
+
 </table>
 </div>
 </div>
 
 <!-- CADASTRO -->
 <div class="box" id="cadastroCliente">
+
 <h3>Cadastro de Cliente</h3>
 
 <input id="nome" placeholder="Nome">
@@ -174,17 +229,23 @@ input {
 <input id="telefone" placeholder="Telefone">
 <input id="email" placeholder="Email">
 
-<button onclick="cadastrarCliente()" class="btn-liberar">Cadastrar</button>
+<button onclick="cadastrarCliente()" class="btn-liberar">
+Cadastrar
+</button>
 
 <p id="mensagem"></p>
+
 </div>
 
 <!-- CLIENTES -->
 <div class="box">
+
 <h3>Clientes</h3>
+
 <button onclick="buscarClientes()">Carregar</button>
 
 <table>
+
 <thead>
 <tr>
 <th>Nome</th>
@@ -196,89 +257,157 @@ input {
 </thead>
 
 <tbody id="listaClientes"></tbody>
+
 </table>
+</div>
+
+<!-- REGRAS DA LOCAÇÃO -->
+<div class="box">
+
+<h3>Regras da Locação</h3>
+
+<p>✔ Permanência de 3 dias úteis</p>
+
+<p>✔ Não ultrapassar a borda da caçamba</p>
+
+<p>✔ Não movimentar a caçamba sem aviso</p>
+
+<p>✔ Não retirar a faixa refletiva</p>
+
+<p>✔ Entregas e retiradas realizadas no período noturno</p>
+
 </div>
 
 <!-- LOCAÇÕES -->
 <div class="box">
+
 <h3>Locações</h3>
+
 <button onclick="carregarLocacoes()">Carregar</button>
 
 <table>
+
 <thead>
 <tr>
 <th>Cliente</th>
 <th>Caçamba</th>
-<th>Entrega</th>
-<th>Retirada</th>
-<th>Status</th>
+<th>Entrega Prevista</th>
+<th>Retirada Prevista</th>
+<th>Entrega Real</th>
+<th>Retirada Real</th>
+<th>Status Locação</th>
+<th>Status Pagamento</th>
+<th>Controle</th>
 </tr>
 </thead>
 
 <tbody id="tabelaLocacoes"></tbody>
+
 </table>
 </div>
 
 </div>
-
+<!-- FOOTER -->
 <div class="footer">
+
 <strong>VPB Caçambas</strong>
 
 <div class="footer-icons">
+
     <div>
         <img src="whatsapp.png?v=2">
         <span>(11) 4863-2581</span>
     </div>
+
     <div>
         <img src="email.png?v=2">
         <span>financeiro@vpbcacamba.com</span>
     </div>
+
 </div>
 
 <p>🏗️ Mais de 30 anos de experiência</p>
+
 </div>
 
 <script>
+
 const API = "http://127.0.0.1:5000";
+
 let cacambaSelecionada = null;
 
 function formatarData(dataISO) {
+
+    if (!dataISO) {
+        return "-";
+    }
+
     return new Date(dataISO).toLocaleDateString('pt-BR');
 }
 
 async function carregar() {
+
     const res = await fetch(API + "/cacambas");
+
     const dados = await res.json();
 
     lista.innerHTML = "";
 
     dados.forEach(c => {
+
         lista.innerHTML += `
         <tr>
+
             <td>${c.id}</td>
+
             <td>${c.numero}</td>
-            <td class="${c.status === 'disponivel' ? 'status-disponivel' : 'status-alugada'}">${c.status}</td>
-            <td>
-                <button onclick="alterarStatus(${c.id}, '${c.status}')">
-                    ${c.status === 'disponivel' ? 'Alugar' : 'Liberar'}
-                </button>
+
+            <td class="${c.status === 'disponivel'
+                ? 'status-disponivel'
+                : 'status-alugada'}">
+
+                ${c.status}
             </td>
-        </tr>`;
+
+            <td>
+
+                <button onclick="alterarStatus(${c.id}, '${c.status}')">
+
+                    ${c.status === 'disponivel'
+                        ? 'Alugar'
+                        : 'Liberar'}
+
+                </button>
+
+            </td>
+
+        </tr>
+        `;
     });
 }
 
 async function alterarStatus(id, status) {
+
     if (status !== "disponivel") {
+
         alert("Já está alugada");
+
         return;
     }
 
     cacambaSelecionada = id;
 
     await fetch(API + "/cacambas/" + id, {
+
         method: "PUT",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({status:"alugada"})
+
+        headers: {
+            "Content-Type":"application/json"
+        },
+
+        body: JSON.stringify({
+            status:"alugada"
+        })
     });
 
     carregar();
@@ -291,14 +420,22 @@ async function alterarStatus(id, status) {
 function cadastrarCliente() {
 
     if (!cacambaSelecionada) {
+
         alert("Selecione uma caçamba!");
+
         return;
     }
 
     fetch(API + "/clientes", {
+
         method: "POST",
-        headers: {"Content-Type":"application/json"},
+
+        headers: {
+            "Content-Type":"application/json"
+        },
+
         body: JSON.stringify({
+
             nome: nome.value,
             cpf_cnpj: cpf_cnpj.value,
             endereco: endereco.value,
@@ -306,27 +443,45 @@ function cadastrarCliente() {
             email: email.value
         })
     })
+
     .then(() => fetch(API + "/clientes"))
+
     .then(r => r.json())
+
     .then(clientes => {
 
         const ultimo = clientes[clientes.length - 1];
 
         return fetch(API + "/locacoes", {
+
             method: "POST",
-            headers: {"Content-Type":"application/json"},
+
+            headers: {
+                "Content-Type":"application/json"
+            },
+
             body: JSON.stringify({
+
                 cliente_id: ultimo.id,
+
                 cacamba_id: cacambaSelecionada,
-                data_entrega: new Date().toISOString().split('T')[0],
-                data_retirada: new Date(Date.now()+3*86400000).toISOString().split('T')[0],
-                status: "Ativa"
+
+                data_entrega:
+                new Date().toISOString().split('T')[0],
+
+                data_retirada:
+                new Date(Date.now() + 3 * 86400000)
+                .toISOString()
+                .split('T')[0]
             })
         });
 
     })
+
     .then(() => {
+
         mensagem.innerText = "Locação registrada!";
+
         carregarLocacoes();
 
         nome.value = "";
@@ -340,55 +495,181 @@ function cadastrarCliente() {
 }
 
 function buscarClientes() {
+
     fetch(API + "/clientes")
+
     .then(r => r.json())
+
     .then(d => {
+
         listaClientes.innerHTML = "";
+
         d.forEach(c => {
+
             listaClientes.innerHTML += `
             <tr>
+
                 <td>${c.nome}</td>
+
                 <td>${c.cpf_cnpj}</td>
+
                 <td>${c.endereco}</td>
+
                 <td>${c.telefone}</td>
+
                 <td>${c.email}</td>
-            </tr>`;
+
+            </tr>
+            `;
         });
     });
 }
 
 async function carregarLocacoes() {
+
     const [resL, resC, resCa] = await Promise.all([
-        fetch(API+"/locacoes"),
-        fetch(API+"/clientes"),
-        fetch(API+"/cacambas")
+
+        fetch(API + "/locacoes"),
+        fetch(API + "/clientes"),
+        fetch(API + "/cacambas")
     ]);
 
     const loc = await resL.json();
+
     const cli = await resC.json();
+
     const cac = await resCa.json();
 
     tabelaLocacoes.innerHTML = "";
 
     loc.forEach(l => {
-        const cliente = cli.find(c=>c.id===l.cliente_id);
-        const cacamba = cac.find(c=>c.id===l.cacamba_id);
 
-        tabelaLocacoes.innerHTML += `
+    const cliente =
+cli.find(c => c.id === l.cliente_id);
+
+const cacamba =
+cac.find(c => c.id === l.cacamba_id);
+
+const corStatusLocacao =
+    l.status_locacao === "finalizada"
+        ? "#7f8c8d"
+        : l.status_locacao === "entregue"
+        ? "#0a7c4a"
+        : "#e67e22";
+
+const corStatusPagamento =
+    l.status_pagamento === "pago"
+        ? "#0a7c4a"
+        : "#c0392b";
+
+tabelaLocacoes.innerHTML += `
+
         <tr>
+
             <td>${cliente?.nome || "-"}</td>
+
             <td>${cacamba?.numero || "-"}</td>
-            <td>${formatarData(l.data_entrega)}</td>
-            <td>${formatarData(l.data_retirada)}</td>
-            <td style="color:#0a7c4a;font-weight:bold;">
-                ${l.status || "Ativa"}
+
+           <td>${formatarData(l.data_entrega)}</td>
+
+<td>${formatarData(l.data_retirada)}</td>
+
+<td>${formatarData(l.data_entrega_real)}</td>
+
+<td>${formatarData(l.data_retirada_real)}</td>
+
+<td style="color:${corStatusLocacao};font-weight:bold;">
+
+    ${l.status_locacao || "pendente"}
+
+</td>
+
+           <td style="color:${corStatusPagamento};font-weight:bold;">
+
+    ${l.status_pagamento || "pendente"}
+
+</td>
+
+            <td>
+
+                <button
+    onclick="atualizarLocacao(${l.id}, 'entregue', 'pago')"
+    class="btn-liberar"
+    ${l.status_locacao === "finalizada" ? "disabled" : ""}>
+
+    Confirmar
+
+</button>
+
+<button
+    onclick="atualizarLocacao(${l.id}, 'finalizada', 'pago')"
+    class="btn-alugar"
+    ${l.status_locacao === "finalizada" ? "disabled" : ""}>
+
+    Finalizar
+
+</button>
+
             </td>
-        </tr>`;
+
+        </tr>
+        `;
     });
 }
 
+function mostrarNotificacao(texto) {
+
+    const n = document.getElementById("notificacao");
+
+    n.innerText = texto;
+
+    n.style.display = "block";
+
+    setTimeout(() => {
+
+        n.style.display = "none";
+
+    }, 3000);
+}
+
+async function atualizarLocacao(id, statusLocacao, statusPagamento) {
+
+    await fetch(API + "/locacoes/" + id, {
+
+        method: "PUT",
+
+        headers: {
+            "Content-Type":"application/json"
+        },
+
+        body: JSON.stringify({
+
+            status_locacao: statusLocacao,
+
+            status_pagamento: statusPagamento
+        })
+    });
+
+    if (statusLocacao === "entregue") {
+
+        mostrarNotificacao("Entrega confirmada com sucesso!");
+
+    }
+
+    if (statusLocacao === "finalizada") {
+
+        mostrarNotificacao("Locação finalizada com sucesso!");
+
+    }
+
+    carregarLocacoes();
+}
+
 carregar();
+
 </script>
+
+<div id="notificacao" class="notificacao"></div>
 
 </body>
 </html>
