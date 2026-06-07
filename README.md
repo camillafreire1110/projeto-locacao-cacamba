@@ -49,7 +49,7 @@ O sistema simula um cenário real de uma empresa de locação de caçambas, perm
 
 ---
 
-### 🟢 AC4 – Controle Operacional da Locação
+### 🟢 Prova Final – Controle Operacional da Locação
 
 - Controle de status da locação
 - Controle de status de pagamento
@@ -144,7 +144,7 @@ O frontend realiza requisições para a API desenvolvida em Flask, que se comuni
 
 ## ✅ Status do Projeto
 
-Projeto finalizado com as funcionalidades das AC1, AC2, AC3 e AC4 implementadas.
+Projeto finalizado com as funcionalidades das AC1, AC2, AC3 e Prova implementadas.
 
 O sistema contempla o fluxo completo da locação de caçambas, desde o controle de estoque até a finalização da locação.
 
